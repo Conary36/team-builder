@@ -9,27 +9,28 @@ function Form() {
 
     const [memberResults, setMemberResults] = useState(characters);
 
-    // const roster = event => {
-    //     setTeamMember({ ...member, [event.target.name]: event.target.value });
-
-    // };
-
+    
+    
      // create useEffect that watches searchTerm and returns a new list
      // of searchResults based on search box input value.
-    useEffect(()=>{}, [member]);
+    useEffect(() => {}, [member]);
 
      // The handleChange method takes the event object as the argument
      // and sets the current value of the input to the searchTerm state
     //  using setSearchTerm
     const handleChange = event => {
-        setTeamMember(event.target.value);
+        setTeamMember({ ...member, [event.target.name]: event.target.value });
     }
 
     // const results = characters.filter(character => {
-    //     return member.results;
+    //     return character.member;
     // });
+    const onSubmit = event =>{
+        setMemberResults(...memberResults, member);
+    }
 
-        // setMemberResults(results);
+    // setMemberResults(results);
+        
     
 
     return (
@@ -40,6 +41,7 @@ function Form() {
                 <label>
                     Name:
                      <input
+                        key="name"
                         type='text'
                         name="name"
                         placeholder='Name'
@@ -51,6 +53,7 @@ function Form() {
                 <label>
                     Email:
                      <input
+                        key="name"
                         type='text'
                         name='email'
                         placeholder='Email'
@@ -61,7 +64,7 @@ function Form() {
                 <label>
                     Role:
                      <input
-                
+                        key='name'
                         type='text'
                         name='role'
                         placeholder='Role'
@@ -73,7 +76,7 @@ function Form() {
             <div className="character-list">
                 <ul>
                     {memberResults.map(person => {
-                        return <li key={person}>{person}</li>;
+                        return <li key={person}>{person.name}{""}{person.email}{""}{person.role}</li>;
                     })}
                 </ul>
             </div>
